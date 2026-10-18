@@ -4,6 +4,10 @@
 
 Interfaz en español, adaptable a móvil, con biblioteca, búsqueda de géneros, revisión de artistas, vista previa y guardado en Navidrome. Backend Python/FastAPI, SQLite y frontend HTML/CSS/JavaScript sin CDN, compilación ni dependencias de Node.
 
+## Navidrome Studio
+
+También encontrarás [Navidrome Studio](https://github.com/diegoshock/navidrome-studio), una modificación visual de Navidrome inspirada en Apple Music, con temas claro y oscuro y su propia imagen Docker y plantilla de Unraid. Su código, publicación en GHCR y plantilla de Unraid se mantienen en ese repositorio independiente.
+
 ## Qué hace
 
 - Conecta una cuenta de Navidrome mediante su API Subsonic/OpenSubsonic.
