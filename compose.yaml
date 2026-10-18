@@ -1,0 +1,23 @@
+services:
+  playlistr:
+    build: .
+    image: playlistr:local
+    container_name: playlistr
+    restart: unless-stopped
+    ports:
+      - "${PLAYLISTR_PORT:-8088}:8080"
+    environment:
+      PLAYLISTR_PASSWORD: ${PLAYLISTR_PASSWORD:?Define PLAYLISTR_PASSWORD en .env (al menos 12 caracteres)}
+      PLAYLISTR_SECURE_COOKIE: ${PLAYLISTR_SECURE_COOKIE:-false}
+    volumes:
+      - playlistr-data:/data
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+
+volumes:
+  playlistr-data:

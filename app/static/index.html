@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111318">
+  <meta name="description" content="Playlists para Navidrome con géneros de artistas y fuentes verificables.">
+  <title>Playlistr — Tu música, nuevas conexiones</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <div id="login" class="login-screen">
+    <form id="login-form" class="login-card">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>playlistr<span class="brand-dot">.</span></div>
+      <span class="eyebrow">TU BIBLIOTECA, REDESCUBIERTA</span>
+      <h1>La próxima gran playlist<br>ya está en tu música.</h1>
+      <p>Conecta Navidrome. Encuentra géneros. Mezcla algo nuevo.</p>
+      <label for="login-password">Contraseña de Playlistr</label>
+      <input id="login-password" type="password" autocomplete="current-password" required placeholder="Tu contraseña de acceso">
+      <button class="button primary" type="submit">Entrar a mi biblioteca <span aria-hidden="true">→</span></button>
+      <p id="login-error" class="error-text" role="alert"></p>
+      <small>Usa la contraseña definida en PLAYLISTR_PASSWORD al instalar.</small>
+    </form>
+    <div class="login-art" aria-hidden="true"><div class="record"><div class="record-label">p.</div></div><span>MISMA MÚSICA.<br>NUEVAS CONEXIONES.</span></div>
+  </div>
+
+  <div id="shell" class="shell" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Playlistr inicio"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>playlistr<span class="brand-dot">.</span></a>
+      <div class="workspace-label"><span class="workspace-icon">♫</span><div>Mi espacio musical<small>Biblioteca personal</small></div></div>
+      <span class="nav-label">EXPLORA TU MÚSICA</span>
+      <nav aria-label="Navegación principal">
+        <button data-page="create" class="nav-button active"><span aria-hidden="true">✦</span>Crear playlist</button>
+        <button data-page="artists" class="nav-button"><span aria-hidden="true">♬</span>Artistas y géneros<span id="review-count" class="nav-count"></span></button>
+        <button data-page="playlists" class="nav-button"><span aria-hidden="true">▤</span>Mis playlists</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="source-note"><span class="source-orbit" aria-hidden="true">◎</span><strong>Géneros con contexto</strong><p>Fuentes públicas. Artistas identificados. Tú tienes la última palabra.</p><span>MusicBrainz + Wikidata ↗</span></div>
+        <button data-page="settings" class="nav-button"><span aria-hidden="true">⚙</span>Configuración</button>
+        <button id="logout" class="nav-button"><span aria-hidden="true">↪</span>Cerrar sesión</button>
+        <div class="sidebar-footer">HECHO PARA NAVIDROME <span>v0.1</span></div>
+      </div>
+    </aside>
+    <div class="main-shell">
+      <header class="topbar"><div><span class="breadcrumb">Mi biblioteca</span><span class="separator">/</span><span id="page-label">Crear playlist</span></div><button id="connection-badge" data-page="settings" class="connection-badge">Sin conectar</button></header>
+      <main id="content"></main>
+      <footer class="main-footer"><span>Tu música se queda en tu servidor.</span><span>Sin IA generativa · Sin OpenRouter</span></footer>
+    </div>
+  </div>
+  <div id="job-banner" class="job-banner" role="status" hidden></div>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <dialog id="artist-dialog" aria-labelledby="artist-dialog-title"><div id="artist-dialog-content"></div></dialog>
+</body>
+</html>

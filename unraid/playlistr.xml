@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>playlistr</Name>
+  <Repository>ghcr.io/diegoshock/playlistr:latest</Repository>
+  <Registry>https://github.com/users/diegoshock/packages/container/package/playlistr</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/diegoshock/docker-playlists</Support>
+  <Project>https://github.com/diegoshock/docker-playlists</Project>
+  <Overview>Playlists para Navidrome usando géneros de MusicBrainz y Wikidata, sin OpenRouter. Descarga la imagen de GitHub Container Registry; no requiere Docker Compose ni compilación local. La primera instalación requiere que el paquete esté publicado y tenga visibilidad Public.</Overview>
+  <Category>MediaApp:Music</Category>
+  <WebUI>http://[IP]:[PORT:8080]/</WebUI>
+  <Icon/>
+  <ExtraParams>--user 99:100 --security-opt=no-new-privileges --cap-drop=ALL</ExtraParams>
+  <PostArgs/>
+  <Config Name="Puerto Web" Target="8080" Default="8088" Mode="tcp" Description="Puerto de la interfaz Playlistr" Type="Port" Display="always" Required="true" Mask="false">8088</Config>
+  <Config Name="Datos" Target="/data" Default="/mnt/user/appdata/playlistr" Mode="rw" Description="SQLite y clave de cifrado. Debe ser escribible por UID 99 / GID 100." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/playlistr</Config>
+  <Config Name="Contraseña Playlistr" Target="PLAYLISTR_PASSWORD" Default="" Mode="" Description="Contraseña de acceso a Playlistr, al menos 12 caracteres. No es la contraseña de Navidrome." Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="Cookie HTTPS" Target="PLAYLISTR_SECURE_COOKIE" Default="false" Mode="" Description="true si usas HTTPS mediante proxy inverso; false para acceso HTTP en LAN." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+</Container>
