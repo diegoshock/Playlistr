@@ -116,7 +116,7 @@ def create_app(data_dir=None, password=None, client=None):
         app.state.store = Store(data_dir or os.environ.get("PLAYLISTR_DATA_DIR", "/data"))
         app.state.client = client or httpx.AsyncClient(
             timeout=httpx.Timeout(30, connect=10), follow_redirects=False,
-            headers={"User-Agent": os.environ.get("PLAYLISTR_USER_AGENT", "Playlistr/0.1 (https://github.com/diegoshock/docker-playlists)")})
+            headers={"User-Agent": os.environ.get("PLAYLISTR_USER_AGENT", "Playlistr/0.1 (https://github.com/diegoshock/Playlistr)")})
         app.state.resolver = GenreResolver(app.state.client)
         app.state.sessions = {}
         app.state.attempts = defaultdict(deque)

@@ -72,13 +72,13 @@ El archivo [`unraid/playlistr.xml`](unraid/playlistr.xml) ya contiene estos camp
 ```bash
 mkdir -p /boot/config/plugins/dockerMan/templates-user
 curl --fail --location --proto '=https' \
-  https://raw.githubusercontent.com/diegoshock/docker-playlists/main/unraid/playlistr.xml \
+  https://raw.githubusercontent.com/diegoshock/Playlistr/main/unraid/playlistr.xml \
   -o /boot/config/plugins/dockerMan/templates-user/my-playlistr.xml
 ```
 
 No es una aplicación publicada en Community Applications: es una plantilla de usuario. También puedes configurar los mismos campos manualmente, sin descargar la plantilla.
 
-La plantilla usa el [icono PNG de Playlistr](https://raw.githubusercontent.com/diegoshock/docker-playlists/main/app/static/icons/playlistr.png), compatible con Unraid. Si ya habías creado el contenedor, pega esa URL en el campo **Icon URL** de su plantilla y aplica los cambios. Los SVG estático, animado, claro y oscuro están en [`app/static/icons`](app/static/icons); el paquete preparado para Dashboard Icons está en [`docs/icons/playlistr-icons.zip`](docs/icons/playlistr-icons.zip).
+La plantilla usa el [icono PNG de Playlistr](https://raw.githubusercontent.com/diegoshock/Playlistr/main/app/static/icons/playlistr.png), compatible con Unraid. Si ya habías creado el contenedor, pega esa URL en el campo **Icon URL** de su plantilla y aplica los cambios. Los SVG estático, animado, claro y oscuro están en [`app/static/icons`](app/static/icons); el paquete preparado para Dashboard Icons está en [`docs/icons/playlistr-icons.zip`](docs/icons/playlistr-icons.zip).
 
 ### Conectar Navidrome
 
@@ -109,7 +109,7 @@ Para la primera publicación:
    docker pull ghcr.io/diegoshock/playlistr:latest
    ```
 
-Si el paquete ya existía y el workflow recibe `permission_denied: write_package`, vincúlalo a `diegoshock/docker-playlists` y permite acceso de Actions a ese repositorio desde los ajustes del paquete. La imagen incluye la etiqueta OCI `org.opencontainers.image.source` para asociar las publicaciones nuevas con su repositorio.
+Si el paquete ya existía y el workflow recibe `permission_denied: write_package`, vincúlalo a `diegoshock/Playlistr` y permite acceso de Actions a ese repositorio desde los ajustes del paquete. La imagen incluye la etiqueta OCI `org.opencontainers.image.source` para asociar las publicaciones nuevas con su repositorio.
 
 Una descarga con `denied` puede indicar que el paquete sigue privado. Un error `manifest unknown` puede indicar que el workflow aún no terminó o que no existe ese tag. Comprueba Actions y la visibilidad antes de cambiar las credenciales de Navidrome.
 
@@ -155,7 +155,7 @@ Si una escritura en Navidrome termina con un error de red, el resultado puede se
 | `PLAYLISTR_DATA_DIR` | `/data` | Base de datos y clave de cifrado. |
 | `PLAYLISTR_PORT` | `8088` | Puerto publicado por Compose, no el interno del contenedor. |
 | `PLAYLISTR_SECURE_COOKIE` | `false` | Usa `true` si accedes exclusivamente mediante HTTPS. |
-| `PLAYLISTR_USER_AGENT` | `Playlistr/0.1 (https://github.com/diegoshock/docker-playlists)` | Identificación ante las fuentes públicas; puedes añadir tu contacto. |
+| `PLAYLISTR_USER_AGENT` | `Playlistr/0.1 (https://github.com/diegoshock/Playlistr)` | Identificación ante las fuentes públicas; puedes añadir tu contacto. |
 
 Destinos requeridos: tu servidor Navidrome, `https://musicbrainz.org` y `https://www.wikidata.org`. Para construir la imagen hacen falta Docker Hub y PyPI. No necesitas claves API de MusicBrainz o Wikidata. Los proveedores pueden imponer límites o no tener información de un artista.
 

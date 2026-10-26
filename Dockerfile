@@ -2,7 +2,7 @@ FROM python:3.12-slim-bookworm
 
 LABEL org.opencontainers.image.title="Playlistr" \
       org.opencontainers.image.description="Playlists for Navidrome using artist genres from MusicBrainz and Wikidata" \
-      org.opencontainers.image.source="https://github.com/diegoshock/docker-playlists"
+      org.opencontainers.image.source="https://github.com/diegoshock/Playlistr"
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
