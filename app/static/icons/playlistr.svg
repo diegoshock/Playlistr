@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Playlistr</title>
+  <rect width="512" height="512" rx="128" fill="#c5ef79"/>
+  <g fill="#14171a">
+    <rect x="112" y="224" width="48" height="64" rx="24"/>
+    <rect x="192" y="144" width="48" height="224" rx="24"/>
+    <rect x="272" y="96" width="48" height="320" rx="24"/>
+    <rect x="352" y="200" width="48" height="112" rx="24"/>
+  </g>
+</svg>

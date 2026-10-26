@@ -78,6 +78,8 @@ curl --fail --location --proto '=https' \
 
 No es una aplicación publicada en Community Applications: es una plantilla de usuario. También puedes configurar los mismos campos manualmente, sin descargar la plantilla.
 
+La plantilla usa el [icono PNG de Playlistr](https://raw.githubusercontent.com/diegoshock/docker-playlists/main/app/static/icons/playlistr.png), compatible con Unraid. Si ya habías creado el contenedor, pega esa URL en el campo **Icon URL** de su plantilla y aplica los cambios. Los SVG estático, animado, claro y oscuro están en [`app/static/icons`](app/static/icons); el paquete preparado para Dashboard Icons está en [`docs/icons/playlistr-icons.zip`](docs/icons/playlistr-icons.zip).
+
 ### Conectar Navidrome
 
 Usa la IP LAN de Unraid y el puerto publicado de Navidrome, por ejemplo `http://192.168.1.100:4533`. Si comparten una red Docker personalizada, también puedes usar `http://navidrome:4533`, donde `navidrome` es el nombre del otro contenedor en esa red. `localhost` dentro de Playlistr no apunta al contenedor de Navidrome.

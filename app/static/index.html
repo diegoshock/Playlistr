@@ -6,14 +6,17 @@
   <meta name="theme-color" content="#111318">
   <meta name="description" content="Playlists para Navidrome con géneros de artistas y fuentes verificables.">
   <title>Playlistr — Tu música, nuevas conexiones</title>
-  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/static/icons/playlistr-animated.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/static/icons/playlistr.png" type="image/png">
+  <link rel="apple-touch-icon" href="/static/icons/playlistr.png">
   <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="/static/brand.css">
   <script defer src="/static/app.js"></script>
 </head>
 <body>
   <div id="login" class="login-screen">
     <form id="login-form" class="login-card">
-      <div class="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>playlistr<span class="brand-dot">.</span></div>
+      <div class="brand"><picture class="brand-mark"><source media="(prefers-reduced-motion: reduce)" srcset="/static/icons/playlistr.svg"><img src="/static/icons/playlistr-animated.svg" alt=""></picture>playlistr<span class="brand-dot">.</span></div>
       <span class="eyebrow">TU BIBLIOTECA, REDESCUBIERTA</span>
       <h1>La próxima gran playlist<br>ya está en tu música.</h1>
       <p>Conecta Navidrome. Encuentra géneros. Mezcla algo nuevo.</p>
@@ -28,7 +31,7 @@
 
   <div id="shell" class="shell" hidden>
     <aside class="sidebar">
-      <a class="brand" href="/" aria-label="Playlistr inicio"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>playlistr<span class="brand-dot">.</span></a>
+      <a class="brand" href="/" aria-label="Playlistr inicio"><picture class="brand-mark"><source media="(prefers-reduced-motion: reduce)" srcset="/static/icons/playlistr.svg"><img src="/static/icons/playlistr-animated.svg" alt=""></picture>playlistr<span class="brand-dot">.</span></a>
       <div class="workspace-label"><span class="workspace-icon">♫</span><div>Mi espacio musical<small>Biblioteca personal</small></div></div>
       <span class="nav-label">EXPLORA TU MÚSICA</span>
       <nav aria-label="Navegación principal">

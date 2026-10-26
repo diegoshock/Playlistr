@@ -10,7 +10,7 @@
   <Overview>Playlists para Navidrome usando géneros de MusicBrainz y Wikidata, sin OpenRouter. Descarga la imagen de GitHub Container Registry; no requiere Docker Compose ni compilación local. La primera instalación requiere que el paquete esté publicado y tenga visibilidad Public.</Overview>
   <Category>MediaApp:Music</Category>
   <WebUI>http://[IP]:[PORT:8080]/</WebUI>
-  <Icon/>
+  <Icon>https://raw.githubusercontent.com/diegoshock/docker-playlists/main/app/static/icons/playlistr.png</Icon>
   <ExtraParams>--user 99:100 --security-opt=no-new-privileges --cap-drop=ALL</ExtraParams>
   <PostArgs/>
   <Config Name="Puerto Web" Target="8080" Default="8088" Mode="tcp" Description="Puerto de la interfaz Playlistr" Type="Port" Display="always" Required="true" Mask="false">8088</Config>
