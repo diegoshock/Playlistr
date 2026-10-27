@@ -151,7 +151,7 @@ def create_app(data_dir=None, password=None, client=None):
         response.headers["Referrer-Policy"] = "no-referrer"
         response.headers["X-Frame-Options"] = "DENY"
         response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
-        if request.url.path.startswith("/api/"):
+        if request.url.path == "/" or request.url.path.startswith(("/api/", "/static/")):
             response.headers["Cache-Control"] = "no-store"
         return response
 

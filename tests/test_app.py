@@ -15,6 +15,8 @@ def test_authentication_security_and_secret_redaction(environment):
     assert client.post("/api/sync", headers={"origin": "https://attacker.example"}).status_code == 403
     assert client.post("/api/sync", headers={"sec-fetch-site": "cross-site"}).status_code == 403
     assert client.get("/api/state").headers["cache-control"] == "no-store"
+    assert client.get("/").headers["cache-control"] == "no-store"
+    assert client.get("/static/app.js").headers["cache-control"] == "no-store"
     assert "frame-ancestors 'none'" in client.get("/").headers["content-security-policy"]
     assert client.post("/api/logout").status_code == 200
     assert client.get("/api/state").status_code == 401
