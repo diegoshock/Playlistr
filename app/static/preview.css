@@ -1,0 +1,43 @@
+/* The generated preview remains editable until it is sent to Navidrome. */
+.track {
+  grid-template-columns: 20px 34px minmax(0, 1fr) 39px 28px;
+  padding-right: 16px;
+}
+
+.track-remove {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #858a95;
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.track-remove:hover,
+.track-remove:focus-visible {
+  background: #3a282c;
+  color: #f3a7ad;
+}
+
+@media (max-width: 640px) {
+  .track {
+    grid-template-columns: 17px 30px minmax(0, 1fr) 28px;
+    gap: 8px;
+    padding-left: 12px;
+    padding-right: 10px;
+  }
+
+  .track-cover {
+    width: 30px;
+    height: 30px;
+  }
+
+  .track-duration {
+    display: none;
+  }
+}

@@ -72,6 +72,7 @@ class Filters(BaseModel):
 class PlaylistRequest(BaseModel):
     name: str = Field(min_length=1, max_length=120)
     preview_id: str = Field(min_length=1, max_length=100)
+    song_ids: list[str] | None = Field(default=None, max_length=2000)
 
     @field_validator("name")
     @classmethod
@@ -418,15 +419,18 @@ def create_app(data_dir=None, password=None, client=None):
                 return preview["result"]
             if preview["attempted"]:
                 raise HTTPException(409, "El intento anterior tuvo un resultado incierto. Revisa Navidrome antes de generar otra vista previa.")
-            if not preview["ids"]:
+            ids = preview["ids"] if body.song_ids is None else body.song_ids
+            if not ids:
                 raise HTTPException(422, "No hay canciones para crear la playlist.")
+            if len(ids) != len(set(ids)) or not set(ids).issubset(preview["ids"]):
+                raise HTTPException(422, "La selección contiene canciones ajenas a esta vista previa.")
             remote = navidrome()
             preview["attempted"] = True
-            remote_id = await remote.create_playlist(body.name, preview["ids"])
+            remote_id = await remote.create_playlist(body.name, ids)
             with app.state.store.db() as db:
                 db.execute("INSERT INTO playlists(name,remote_id,song_count,filters,created_at) VALUES (?,?,?,?,?)",
-                           (body.name, remote_id, len(preview["ids"]), json.dumps(preview["filters"]), now()))
-            preview["result"] = {"ok": True, "remote_id": remote_id, "song_count": len(preview["ids"])}
+                           (body.name, remote_id, len(ids), json.dumps(preview["filters"]), now()))
+            preview["result"] = {"ok": True, "remote_id": remote_id, "song_count": len(ids)}
             return preview["result"]
 
     app.mount("/static", StaticFiles(directory=STATIC), name="static")

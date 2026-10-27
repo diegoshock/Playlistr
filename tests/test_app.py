@@ -66,6 +66,24 @@ def test_full_sync_classification_preview_and_remote_playlist(connected):
     assert client.get("/api/state").json()["stats"]["playlists"] == 1
 
 
+def test_preview_tracks_can_be_removed_before_saving(connected):
+    client, _, remote = connected
+    sync(client)
+    preview = client.post("/api/preview", json={"shuffle": False}).json()
+    kept = [preview["songs"][1]["id"]]
+    result = client.post("/api/playlists", json={
+        "name": "Afinada", "preview_id": preview["preview_id"], "song_ids": kept,
+    })
+    assert result.status_code == 200
+    assert result.json()["song_count"] == 1
+    assert remote.playlists[0]["songId"] == kept
+
+    another = client.post("/api/preview", json={"shuffle": False}).json()
+    invalid = {"name": "Alterada", "preview_id": another["preview_id"], "song_ids": ["not-in-preview"]}
+    assert client.post("/api/playlists", json=invalid).status_code == 422
+    assert client.post("/api/playlists", json={**invalid, "song_ids": []}).status_code == 422
+
+
 def test_filters_manual_genres_and_preservation(connected):
     client, app, _ = connected
     sync(client)

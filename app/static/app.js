@@ -100,7 +100,7 @@ function renderPreview() {
   if (!preview) return result + `<div class="preview-empty"><div class="empty-art" aria-hidden="true">♫</div><h3>Un buen descubrimiento te espera</h3><p>Elige tus géneros y genera una vista previa.<br>Tu selección aparecerá aquí antes de guardarla.</p></div><div class="preview-bottom"><small>Escucha desde tu reproductor Navidrome</small><span class="muted" aria-hidden="true">↗</span></div>`;
   if (!preview.songs.length) return result + `<div class="preview-empty"><div class="empty-art" aria-hidden="true">⌕</div><h3>No encontramos esa combinación</h3><p>Prueba con otros géneros, amplía los años o revisa los artistas que aún no tienen clasificación.</p></div>`;
   result += `<div class="preview-summary"><span>${number(preview.songs.length)} canciones · ${Math.round(preview.duration / 60)} min</span><span>${number(preview.total_matches)} coincidencias</span></div><div class="track-list">`;
-  result += preview.songs.map((song,index) => `<div class="track"><span class="track-index">${index + 1}</span><span class="track-cover" aria-hidden="true">♫</span><div class="track-name" title="${esc(song.title)}">${esc(song.title)}<small>${esc(song.artist)} · ${esc(song.album)}</small></div><span class="track-duration">${duration(song.duration)}</span></div>`).join('');
+  result += preview.songs.map((song,index) => `<div class="track"><span class="track-index">${index + 1}</span><span class="track-cover" aria-hidden="true">♫</span><div class="track-name" title="${esc(song.title)}">${esc(song.title)}<small>${esc(song.artist)} · ${esc(song.album)}</small></div><span class="track-duration">${duration(song.duration)}</span><button type="button" class="track-remove" data-remove-song="${esc(song.id)}" aria-label="Quitar ${esc(song.title)} de la playlist" title="Quitar de la playlist">×</button></div>`).join('');
   return result + `</div><div class="preview-bottom"><small>Se guardarán estas mismas canciones.<br>Vista previa válida durante 15 minutos.</small><button data-action="save-playlist" data-idle class="button primary">Guardar en Navidrome ↗</button></div>`;
 }
 function renderArtists() {
@@ -183,6 +183,14 @@ async function logout() {
 document.addEventListener('click', async event => {
   const button = event.target.closest('button');
   if (!button || button.disabled) return;
+  if (button.dataset.removeSong) {
+    const removed = preview?.songs.find(song => song.id === button.dataset.removeSong);
+    if (!removed) return;
+    preview.songs = preview.songs.filter(song => song.id !== removed.id);
+    preview.duration = preview.songs.reduce((total, song) => total + song.duration, 0);
+    $('#preview-panel').innerHTML = renderPreview(); applyBusy();
+    return;
+  }
   if (button.dataset.page) { page = button.dataset.page; render(); return; }
   if (button.dataset.genre) {
     const g = button.dataset.genre;
@@ -203,7 +211,7 @@ document.addEventListener('click', async event => {
       $('#preview-panel').innerHTML = renderPreview(); applyBusy();
     } else if (action === 'save-playlist') {
       if (!playlistName.trim()) { $('#playlist-name').focus(); throw new Error('Ponle un nombre a tu playlist antes de guardarla.'); }
-      await post('/playlists', {name:playlistName, preview_id:preview.preview_id});
+      await post('/playlists', {name:playlistName, preview_id:preview.preview_id, song_ids:preview.songs.map(song => song.id)});
       notify(`“${playlistName}” ya está en Navidrome.`);
       preview = null; playlistName = ''; page = 'playlists'; await loadState();
     } else if (action === 'close-dialog') $('#artist-dialog').close();

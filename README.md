@@ -143,7 +143,7 @@ No subas `.env` al repositorio. Ese Compose usa el volumen nombrado `playlistr-d
 2. Pulsa **Buscar géneros**. La consulta respeta un máximo de una petición a MusicBrainz por segundo; bibliotecas grandes pueden tardar bastante. Las clasificaciones se guardan localmente y los artistas resueltos no se consultan otra vez hasta pulsar **Actualizar fuentes**.
 3. En **Artistas y géneros**, revisa los artistas ambiguos o sin datos. Abre una tarjeta para ver las fuentes, elegir una identidad o escribir géneros separados por comas. Las correcciones manuales no se sobrescriben al consultar internet.
 4. En **Crear playlist**, elige géneros y filtros, escribe un nombre y genera la vista previa. Sin géneros seleccionados se incluye toda la biblioteca, también canciones sin clasificar. En colaboraciones, los géneros se combinan entre sus artistas.
-5. Pulsa **Guardar en Navidrome**. La vista previa dura 15 minutos. Los filtros por año excluyen las canciones sin año conocido. Repetir el guardado de la misma vista previa no crea otra playlist.
+5. Revisa el resultado y usa la **×** para quitar cualquier canción que no encaje; el total y la duración se actualizan al instante. Pulsa **Guardar en Navidrome** para enviar únicamente las canciones restantes. La vista previa dura 15 minutos. Los filtros por año excluyen las canciones sin año conocido. Repetir el guardado de la misma vista previa no crea otra playlist.
 
 Si una escritura en Navidrome termina con un error de red, el resultado puede ser incierto. Playlistr no la repite automáticamente: comprueba primero en Navidrome si la playlist llegó a crearse.
 
